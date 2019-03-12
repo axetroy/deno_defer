@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "plugins": [
+      {
+        "name": "typescript-deno-plugin"
+      }
+    ],
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true
+  }
+}
