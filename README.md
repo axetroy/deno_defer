@@ -1,5 +1,7 @@
 ### Implement Golang's defer in Deno
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/deferify.svg)](https://greenkeeper.io/)
+
 ### Usage
 
 use in `deno`
