@@ -20,7 +20,9 @@ interface Context {
 }
 
 export function deferred<T>(fn: func<T>) {
-  return function(): Promise<T> | T {
+  type fnReturnType = ReturnType<func<T>>;
+
+  return function(): fnReturnType {
     const defers: DeferFunc[] = [];
     const context: Context = {
       error: undefined,
@@ -86,7 +88,7 @@ export function deferred<T>(fn: func<T>) {
       }
     }
 
-    let result: Promise<T> | T;
+    let result: fnReturnType;
     try {
       result = fn(context);
     } catch (err) {
@@ -97,7 +99,7 @@ export function deferred<T>(fn: func<T>) {
 
     if (result instanceof Promise) {
       return result
-        .then((r: any) => dequeue({ returnValue: r }).then(() => r))
+        .then((r: T) => dequeue({ returnValue: r }).then(() => r))
         .catch((err: Error) => {
           context.error = err;
           return dequeue({ error: err, returnValue: undefined }).then(() =>

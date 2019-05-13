@@ -1,25 +1,4 @@
-[![Build Status](https://travis-ci.com/axetroy/deno-deferred.svg?branch=master)](https://travis-ci.com/axetroy/deno-deferred)
-
-### Implement Golang's defer in Deno
-
-### Use Scenes
-
-- Destroy resource.
-
-- Auto Commit or Rollback in Transaction.
-
-- Defer job to do.
-
-### Usage
-
-run the example code with following command
-
-```bash
-deno run https://github.com/axetroy/deno-defer/raw/master/example.ts
-```
-
-```typescript
-import { deferred } from "https://github.com/axetroy/deno-defer/raw/master/mod.ts";
+import { deferred } from "./mod.ts";
 
 (async () => {
   const fn = deferred(async ({ defer }) => {
@@ -55,8 +34,3 @@ import { deferred } from "https://github.com/axetroy/deno-defer/raw/master/mod.t
 // 6. remove test data!
 // 7. destroy database connection!
 // exit
-```
-
-## License
-
-The [MIT License](https://github.com/axetroy/deno-defer/blob/master/LICENSE)
