@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/axetroy/deno-deferred.svg?branch=master)](https://travis-ci.com/axetroy/deno-deferred)
+
 ### Implement Golang's defer in Deno
 
 ### Use Scenes
