@@ -18,25 +18,25 @@ use in `deno`
 import { deferred } from "https://github.com/axetroy/deno-defer/raw/master/mod.ts";
 
 const fn = deferred(async ({ defer, recover }) => {
-  console.log("do first job");
+  console.log("1. create database connection...");
 
   defer(async () => {
-    console.log("1");
+    console.log("5. destroy database connection!");
   });
 
-  console.log("do second job");
+  console.log("2. insert test data...");
 
   defer(async () => {
-    console.log("2");
+    console.log("6. remove test data!");
   });
 
-  console.log("do third job");
+  console.log("3. report to remote server...");
 
   defer(async () => {
-    console.log("3");
+    console.log("7. close remote connection!");
   });
 
-  console.log("job done.");
+  console.log("4. job done.");
 });
 
 fn.then(() => {
@@ -45,13 +45,13 @@ fn.then(() => {
   console.error(err);
 });
 
-// do first job
-// do second job
-// do third job
-// job done.
-// 3
-// 2
-// 1
+// 1. create database connection...
+// 2. insert test data...
+// 3. report to remote server...
+// 4. job done.
+// 5. close remote connection!
+// 6. remove test data!
+// 7. destroy database connection!
 // exit
 ```
 
