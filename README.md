@@ -1,13 +1,21 @@
 ### Implement Golang's defer in Deno
 
+### Use Scenes
+
+- Destroy resource.
+
+- Auto Commit or Rollback in Transaction.
+
+- Defer job to do.
+
 ### Usage
 
 use in `deno`
 
 ```typescript
-import { deferify } from "https://github.com/axetroy/deferify/raw/master/mod.ts";
+import { deferred } from "https://github.com/axetroy/deno-defer/raw/master/mod.ts";
 
-const fn = deferify(async ({ defer, recover }) => {
+const fn = deferred(async ({ defer, recover }) => {
   console.log("do first job");
 
   defer(async () => {
@@ -47,4 +55,4 @@ fn.then(() => {
 
 ## License
 
-The [MIT License](https://github.com/axetroy/deferify/blob/master/LICENSE)
+The [MIT License](https://github.com/axetroy/deno-defer/blob/master/LICENSE)

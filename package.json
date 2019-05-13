@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "typescript": "3.2.1",
-    "typescript-deno-plugin": "^1.1.0"
-  }
-}

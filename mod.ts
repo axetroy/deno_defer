@@ -1,9 +1,5 @@
 type func<T> = (context: Context) => Promise<T> | T;
 
-// type DeferFunc<T> = () => ReturnType<func<T>> extends Promise<T>
-//   ? Promise<void>
-//   : void;
-
 interface DequeueParams {
   readonly error?: Error; // error run in the main function
   readonly returnValue?: any; // the return value of main function
@@ -23,7 +19,7 @@ interface Context {
   readonly recover: Recover; // return all error in this context including defer function
 }
 
-export function deferify<T>(fn: func<T>) {
+export function deferred<T>(fn: func<T>) {
   return function(): Promise<T> | T {
     const defers: DeferFunc[] = [];
     const context: Context = {
@@ -51,6 +47,7 @@ export function deferify<T>(fn: func<T>) {
     }
 
     // dequeue defers in async
+    // it always resolve. no reject.
     async function dequeue(param: DequeueParams) {
       while (defers.length) {
         const deferFn = defers.pop();
@@ -70,6 +67,7 @@ export function deferify<T>(fn: func<T>) {
     }
 
     // dequeue defers in sync
+    // it never throws error
     function dequeueSync(param: DequeueParams) {
       while (defers.length) {
         const deferFn = defers.pop();
@@ -99,9 +97,7 @@ export function deferify<T>(fn: func<T>) {
 
     if (result instanceof Promise) {
       return result
-        .then((r: any) => {
-          return dequeue({ returnValue: r }).then(() => r);
-        })
+        .then((r: any) => dequeue({ returnValue: r }).then(() => r))
         .catch((err: Error) => {
           context.error = err;
           return dequeue({ error: err, returnValue: undefined }).then(() =>
