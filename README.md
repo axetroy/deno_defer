@@ -15,11 +15,11 @@
 run the example code with following command
 
 ```bash
-deno run https://github.com/axetroy/deno-defer/raw/master/example.ts
+deno run https://github.com/axetroy/deno_defer/raw/master/example.ts
 ```
 
 ```typescript
-import { deferred } from "https://github.com/axetroy/deno-defer/raw/master/mod.ts";
+import { deferred } from "https://github.com/axetroy/deno_defer/raw/master/mod.ts";
 
 (async () => {
   const fn = deferred(async ({ defer }) => {
